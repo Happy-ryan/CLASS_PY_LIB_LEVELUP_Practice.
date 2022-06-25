@@ -1,0 +1,26 @@
+import pandas as pd
+from pandas import Series, DataFrame
+
+#=========================================
+# column으로 접근해서 출력하기
+dat ={'col1':[1,2,3,4],'col2':[10,20,30,40],'col3':['A','B','C','D']}
+data = DataFrame(dat)
+print(data['col1'])
+print(data['col2']
+
+#=========================================
+# index 추가하기, col 순서 지정
+date = ['2022-06-25','2022-06-26','2022-06-27','2022-06-28','2022-06-29']
+team_score ={ 'toto':[1500,3000,5000,7000,5500],'seong':[4000,5000,6000,5500,4500],'han':[7000,5000,3000,5000,4000]}
+
+team_df = DataFrame(team_score, columns= ['seong','han','toto'], index=date)
+
+#=========================================
+
+date = ['2022-06-25','2022-06-26','2022-06-27','2022-06-28','2022-06-29']
+team_score ={ 'toto':[1500,3000,5000,7000,5500],'seong':[4000,5000,6000,5500,4500],'han':[7000,5000,3000,5000,4000]}
+team_df = DataFrame(team_score, columns= ['seong','han','toto'], index=date)
+print(team_df)
+#col명을 이용하여 출력가능, col 2개 이상 출력시에는 대괄호 2번 쓴다.
+print(team_df['seon'])
+print(team_df[['seong','toto']])
