@@ -1,0 +1,143 @@
+# 1.라이브러기 불러오기
+import matplotlib.pyplot as plt
+import matplotlib
+print(matplotlib.__version__)
+
+#2 그래프 그려보기
+import matplotlib.pyplot as plt
+plt.plot([1,2,3,4,5], marker='o',linestyle='--')
+plt.plot([11,21,31,47,55],'o')
+plt.show()
+x = range(0,50)
+y = range(0,100,2)
+# y = range(0,100,3) 만약 x축 데이터와 y축 데이터의 개수가 맞지 않으면 다음과 같은 에러가 발생합니다.
+plt.plot(x,y,'*')
+plt.show()
+
+# Marker 인자 키워드를 사용하여 특별한 점 강조하기
+import matplotlib.pyplot as plt
+import numpy as np
+Y_point = np.array([3,3,1,20,10,30,20]) # 포인트 값 지정
+plt.plot(Y_point, marker ='*')
+plt.show()
+
+# y= x*x의 그래프 그려보기
+import matplotlib.pyplot as plt
+x = range(0,30)
+y = [v*v for v in x]
+plt.plot(x,y,'b+')
+plt.show()
+
+# marker, mec, mfc, linestyle, linewidth
+import matplotlib.pyplot as plt
+import numpy as np
+ypoints = np.array([3,8,1,10])
+plt.plot(ypoints, marker='o',ms=20,mec='b',mfc='r')
+plt.plot(ypoints,linestyle='dashed')
+plt.plot(y, linewidth = 25)
+plt.show()
+
+# 여러 개의 그래프 그리기
+fig = plt.figure()
+ax1 = fig.add_subplot(2,1,1)
+ax2 = fig.add_subplot(2,1,2)
+x1 = np.array([0,1,2,3])
+y1 = np.array([13,18,11,10])
+x2 = np.array([0,1,2,3])
+y2 = np.array([32, 81, 11, 11])
+ax1.plot(x1,y1,)
+ax2.plot(x2,y2)
+plt.show()
+
+fig = plt.figure(figsize=(10,5)) # ??
+ax1 = fig.add_subplot(1,3,1) # 1행 3열의 첫번째칸
+ax2 = fig.add_subplot(1,3,2)
+ax3 = fig.add_subplot(1,3,3)
+plt.show()
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+#plt.subplots(행,열)
+x = range(0,15)
+y = [v*v for v in x]
+fig, axs = plt.subplots(2,2,figsize=(10,10))
+axs[0,0].plot(x,y,'o') # 0행 0열에 마커가 'o'인 그래프가 들어간다.
+axs[0,1].plot(x,y,'-')
+axs[1,0].bar(x,y)
+axs[1,1].hist(x,y)
+plt.show()
+
+#plt.subplots 를 이용해서 sin,
+x = np.arange(0.0,2*np.pi,0.1)
+sin_y = np.sin(x)
+cos_y = np.cos(x)
+
+plt.figure(figsize=(10,12))
+fig, axs = plt.subplots(2) 
+axs[0].plot(x,sin_y,'r--')
+axs[1].plot(x,cos_y,'b+')
+plt.show()
+======================================================
+# 실습2 
+x = np.arange(0.0,2*np.pi,0.1)
+sin_y = np.sin(x)
+cos_y = np.cos(x)
+tan_y = np.tan(x)
+arctan_y = np.arctan(x)
+
+fig, axs = plt.subplots(2,2, figsize=(10,10)) 
+axs[0,0].plot(x,sin_y)
+axs[0,1].plot(x,cos_y,'rs')
+axs[1,0].plot(x,tan_y,'c.')
+axs[1,1].plot(x,arctan_y,'yo')
+
+plt.show()
+======================================================
+# 범례표시 plt.legend()
+x = np.arange(10)
+plt.plot(x, 1*x, label ='y=%ix' %1 )
+plt.plot(x,2*x, label='y=%ix'%2)
+plt.legend() # y=1x가 왼쪽 상단에 보이게 한다.
+plt.show()
+
+# for이용해서 하나의 평면에 많은 그래프 그리기
+x = np.arange(10)
+for i in range(5):
+    plt.plot(x,i*x,label='y = %ix' %i)
+plt.legend()
+plt.show()
+
+# 범례 위치 변경에는 subplot()함수 사용하기
+x = np.arange(10)
+plt.figure(figsize=(15,10))
+
+plt.subplot(3,3,1)
+plt.plot(x,1*x,label ='y = %dx'%1)
+plt.legend(loc='upper left')
+plt.subplot(3,3,2)
+plt.plot(x,1*x,label ='y = %dx'%1)
+plt.legend(loc='upper center')
+plt.subplot(3,3,3)
+plt.plot(x,1*x,label ='y = %dx'%1)
+plt.legend(loc='upper right')
+plt.subplot(3,3,4)
+plt.plot(x,1*x,label ='y = %dx'%1)
+plt.legend(loc='center left')
+plt.subplot(3,3,5)
+plt.plot(x,1*x,label ='y = %dx'%1)
+plt.legend(loc='center')
+plt.subplot(3,3,6)
+plt.plot(x,1*x,label ='y = %dx'%1)
+plt.legend(loc='center right')
+plt.subplot(3,3,7)
+plt.plot(x,1*x,label ='y = %dx'%1)
+plt.legend(loc='lower left')
+plt.subplot(3,3,8)
+plt.plot(x,1*x,label ='y = %dx'%1)
+plt.legend(loc='upper center')
+plt.subplot(3,3,9)
+plt.plot(x,1*x,label ='y = %dx'%1)
+plt.legend(loc='lower right')
+
+plt.show()
