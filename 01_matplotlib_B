@@ -1,0 +1,250 @@
+import matplotlib.pyplot as plt
+import matplotlib
+import numpy as np
+# 한글 표기
+from matplotlib import font_manager, rc
+import platform
+
+path = "C:/Windows/Fonts/malgun.ttf"
+if platform.system()== 'Windows':
+    font_name = font_manager.FontProperties(fname=path).get_name()
+    rc('font',family = font_name)
+elif platform.system() == 'Darwin':
+    rc('font',family='AppleGothic')
+else: print('Unknown System')
+
+matplotlib.rcParams['axes.unicode_minus'] = False
+#==================================================================
+#05. 타이틀과 레이블
+import os, warnings
+warnings.filterwarnings(action='ignore')
+
+x = np.array([80,85,90,95,100,105,110,115,120,125])
+y = np.array([240,250,260,270,280,290,300,310,320,330])
+
+plt.plot(x,y,'o')
+
+plt.title('스포츠 시청 데이터')
+plt.xlabel('평균혈압')
+plt.ylabel('칼로리')
+
+plt.show()
+#==================================================================
+#06. Grid
+x = np.array([70,75,80,85,90,95,100,105,110,115,120,125])
+y = np.array([220,240,260,280,300,320,340,360,380,400,420,440])
+
+plt.title('스포츠 시청 데이터')
+plt.xlabel('평균혈압')
+plt.ylabel('칼로리')
+
+plt.grid(color = 'green', linestyle="--", linewidth= 1)
+
+plt.plot(x,y,'r-')
+
+plt.show()
+#==================================================================
+#07. 여러 개의 그래프 전체 타이플 표시 – SuperTitle : 전체 이미지의 상위 타이틀을 subtitles()를 이용하여 제목을 추가할 수 있다.
+
+plt.figure(figsize=(8,5))
+
+x = np.array([0, 1, 2, 3])
+y = np.array([3, 8,1, 10])
+
+plt.subplot(1,2,1)
+plt.plot(x,y,'b--')
+plt.title('Sales')
+
+x = np.array([0, 1, 2, 3])
+y = np.array([10, 20, 30, 40])
+plt.subplot(1,2,2)
+plt.plot(x,y,'r-')
+plt.title("INCOME")
+
+plt.suptitle("My Shop")
+plt.show()
+#==================================================================
+#08. Scatter Plot(1)
+
+x = np.array([51, 71, 17, 18, 21])
+y = np.array([99, 86, 87, 88, 111])
+
+plt.scatter(x,y)
+plt.show()
+
+#==================================================================
+#08. Scatter Plot(2)
+x = np.array([51,71,18,17,21,17,2,9,4,11,12,9,6])
+y = np.array([99,86,87,88,111,86,103,87,94,78,77,85,86])
+
+plt.scatter(x,y,color ="red")
+
+x = np.array([511, 711, 118, 17, 21, 17, 2, 9, 4, 11, 12, 9,6])
+y = np.array([99, 86, 87, 88, 111, 86, 103, 87, 94, 78, 77, 85, 86])
+
+plt.scatter(x,y,color="#88c999")
+
+plt.show()
+#==================================================================
+#08. Scatter Plot(3)
+x = np.random.randint(10, size=10) # [0,10)의 범위에서 10개의 난수 생성
+y = np.random.randint(80,100, size=10)
+#np.random.randint(1, 5, size=(2, 3))는 [1, 5) 범위에서 난수로 이루어진 2행 3열 행렬 생성
+
+colors = np.array([0,10,20,30,40,45,50,55,60,100])
+# color = viridis, plasma, inferno, magma, cividis
+plt.scatter(x,y, c=colors, cmap = 'winter', s= 100) # s 가 무엇을 의미하는가?
+plt.colorbar() 
+plt.show()
+#===================================================
+#09. Alpha(투명도)(1)
+x = np.random.randint(0,10,size=10)
+y = np.random.randint(80,100,size=10)
+
+sizes = np.random.randint(20,800, size=10)
+colors = np.random.randint(0,100, size=100)
+
+plt.scatter(x,y, s= sizes, alpha = 0.2)
+
+plt.show()
+#===================================================
+#09. Alpha(투명도)(2)
+x = np.random.randint(0,10,size=10)
+y = np.random.randint(80,100,size=10)
+
+sizes = np.random.randint(20,800, size=10)
+colors = np.random.randint(0,100, size=10)
+
+plt.scatter(x,y, c = colors, s = sizes, alpha = 0.8, cmap = 'spring')
+
+plt.show()
+#===================================================
+#10. Barplot(막대그래프) 막대그래프가 width
+x = np.array(['A','B','C','D'])
+y = np.array([30,20,40,90])
+
+plt.bar(x,y, color='red',width = 0.5)
+plt.show()
+#===================================================
+#11.Horizontal Bars(수평막대그래프)
+x = np.array(['A','B','C','D'])
+y = np.array([10, 40, 90, 100])
+
+plt.barh(x,y,height=0.2,color='green')
+plt.show()
+#===================================================
+#12.히스토그램
+x = np.random.normal(loc = 170, scale = 10, size = 100) # normal(distribution)정규분포로부터 임의의 샘플들을 그린다.
+plt.hist(x)
+plt.show()
+#===================================================
+#13.pie chart(원그래프)(1)
+plt.figure(figsize=(10,10))
+
+y = np.array([30,20,35,10,5])
+plt.pie(y)
+#===================================================
+#13.pie chart(원그래프)(2)
+plt.figure(figsize=(10,10))
+
+y = np.array([30,20,35,10,5])
+add_fruits = ['사과','바나나','두리안','딸기','오렌지']
+
+plt.pie(y, labels = add_fruits)
+plt.pie(y, labels=add_fruits)
+
+plt.show()
+#===================================================
+#13.pie chart(원그래프)(3)
+plt.figure(figsize=(10,10))
+
+y = np.array([30,20,35,10,5])
+add_fruits = ['사과','바나나','두리안','딸기','오렌지']
+
+plt.pie(y, labels=add_fruits, startangle=180) #strangle은 각도이다.
+
+plt.show()
+#===================================================
+#13.pie chart(원그래프)(4)
+plt.figure(figsize=(10,10))
+
+y = np.array([30,20,35,10,5])
+add_fruits = ['사과','바나나','두리안','딸기','오렌지']
+myexplode = [0.2,0,0,0,0.3]
+
+plt.pie(y, labels=add_fruits, explode = myexplode) #explode은 각 항목을 파이의 원점에서 튀어 나오는 정도
+
+plt.show()
+#===================================================
+#13.pie chart(원그래프)(5)
+plt.figure(figsize=(10,10))
+
+y = np.array([30,20,35,10,5])
+add_fruits = ['사과','바나나','두리안','딸기','오렌지']
+myexplode = [0.2,0,0,0,0.3]
+
+plt.pie(y, labels=add_fruits, explode = myexplode) #explode은 각 항목을 파이의 원점에서 튀어 나오는 정도
+plt.legend(title = '5가지 과일') 
+plt.show()
+#===================================================
+#14. 3D Plots
+#1행 3열의 3D axes를 만들기(1)
+
+fig = plt.figure(figsize=(10,3))
+ax0 = fig.add_subplot(131, projection='3d')
+ax1 = fig.add_subplot(132, projection='3d')
+ax2 = fig.add_subplot(133, projection='3d')
+plt.show()
+#===================================================
+#14. 3D Plots
+#1행 3열의 3D axes를 만들기(2)
+fig, axs = plt.subplots(ncols = 3, figdsize=(10,3),subplot_kw={'projecntion:3d'})
+plt.show()
+#===================================================
+#14. 3D Plots
+#1행 3열의 3D axes를 만들기(3) = scatter 점 찍기
+
+fig, axs = plt.subplots(ncols = 3, figsize=(10,3),subplot_kw={'projection':'3d'})
+
+axs[0].scatter(2,3,4)
+axs[1].scatter(2,3,6)
+axs[2].scatter(2,3,7)
+
+plt.show()
+#===================================================
+#14. 3D Plots
+#1행 3열의 3D axes를 만들기(4) = 난수 점 찍기
+
+np.random.seed(42) # np.random.seed() 난수 예측 가능하도록 만든다.
+#seed_value값은 아무 상관없으며 시드가 다른 경우 서로 다른 유사 난수 생성
+
+xs = np.random.random(100)
+ys = np.random.random(100)*10
+zs = np.random.random(100)*100
+
+fig = plt.figure()
+ax = fig.add_subplot(111,projection ='3d')
+ax.scatter(xs,ys,zs)
+plt.show()
+#===================================================
+#14. 3D Plots
+#1행 3열의 3D axes를 만들기(5) = table, label 넣기, grid 삭제하기
+np.random.seed(42) # np.random.seed() 난수 예측 가능하도록 만든다.
+#seed_value값은 아무 상관없으며 시드가 다른 경우 서로 다른 유사 난수 생성
+
+xs = np.random.random(100)
+ys = np.random.random(100)*10
+zs = np.random.random(100)*100
+
+fig = plt.figure()
+ax = fig.add_subplot(111,projection ='3d')
+ax.scatter(xs,ys,zs, color='red') 
+
+ax.set_title('3d plot data')
+ax.grid(False) # grid del
+
+ax.set_xlabel('x axis') # 축에 라벨링
+ax.set_ylabel('y axis')
+ax.set_zlabel('z axis')
+
+plt.show()
