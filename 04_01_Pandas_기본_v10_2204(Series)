@@ -1,0 +1,22 @@
+import pandas as pd
+from pandas import Series, DataFrame
+
+scores = Series([100,200,300],index=['2022-06-25','2022-06-26','2022-06-27']) # 0열에 idx를 부여하는 방법
+print(scores)
+#2022-06-25    100
+#2022-06-26    200
+#2022-06-27    300
+#dtype: int64
+#=======================
+print(scores['2022-06-25'])  # dict에서 key로 value 찾는 것이랑 유사함. Series 에서 index 쓰면 값 출력된다.
+#100
+#=======================
+for idx in scores.index:
+    print(idx) # index를 출력
+for value in scores.value:
+    print(value) # value를 출력
+#=======================
+# Series의 합 > index를 기준으로 합 
+seong = Series([1000,1500,2000], index=['2020-06-25','2022-06-26','2022-06-27'])
+han = Series([2000,3500,500], index=['2020-06-25','2022-06-26','2022-06-27'])
+print(seong+han)
